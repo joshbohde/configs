@@ -28,6 +28,7 @@
 (require 'quack)
 (require 'paredit)
 
+(add-to-list 'load-path (concat dotfiles-dir "vendor" "/solarized-theme"))
 (require 'config-colors)
 
 (require 'ido)

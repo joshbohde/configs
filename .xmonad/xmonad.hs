@@ -24,7 +24,7 @@ main = do
                         , ppTitle = xmobarColor "#859900" "" . shorten 50
                         }
         , modMask = mod4Mask     -- Rebind Mod to the Windows key
-	, terminal = "urxvt"
+	, terminal = "xterm"
 	, workspaces = ["term", "code", "web"] ++ map show [4..9]
         } `additionalKeys`
         [ ((mod4Mask .|. shiftMask, xK_z), spawn "gnome-screensaver-command -l")

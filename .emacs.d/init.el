@@ -10,6 +10,7 @@
 
 (setq dotfiles-dir (file-name-directory
                     (or (buffer-file-name) load-file-name)))
+(setq custom-theme-load-path dotfiles-dir)
 
 (add-to-list 'load-path dotfiles-dir)
 (add-to-list 'load-path (concat dotfiles-dir "config"))
@@ -42,6 +43,7 @@
 (require 'config-python)
 (require 'config-javascript)
 (require 'config-haskell)
+(require 'config-clojure)
 
 (require 'org-install)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))

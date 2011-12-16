@@ -19,7 +19,7 @@ compinit
 export TERM=xterm-256color
 export EDITOR='emacsclient -t'
 export ALTERNATE_EDITOR='emacs -nw'
-export PATH="$HOME/.bin":"$HOME/.cabal/bin":$PATH:'/var/lib/gems/1.9.1/bin'
+export PATH="$HOME/.gem/bin":"$HOME/.bin":"$HOME/.cabal/bin":$PATH
 export BCAT_BROWSER="uzbl-browser"
 export PIP_DOWNLOAD_CACHE="/tmp/pip-download-cache/"
 

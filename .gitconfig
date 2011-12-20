@@ -1,7 +1,6 @@
 [user]
 	name = Josh Bohde
 	email = josh.bohde@gmail.com
-
 [alias]
     st = status -s
     ci = commit
@@ -16,4 +15,4 @@
 	autosetupmerge = true
 	autosetuprebase = always
 [core]
-	excludesfile = /home/joshbohde/.git/.gitignore
+	excludesfile = /home/joshbohde/.gitignore

@@ -1,8 +1,7 @@
 (require 'color-theme)
 
-(require 'color-theme-solarized)
+(require 'color-theme-molokai)
 (setq color-theme-is-global t)
-(setq solarized-visibility 'high)
-(color-theme-solarized-dark)
+(color-theme-molokai)
 
 (provide 'config-colors)

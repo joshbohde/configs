@@ -22,6 +22,8 @@ export ALTERNATE_EDITOR='emacs -nw'
 export PATH="$HOME/.gem/bin":"$HOME/.bin":"$HOME/.cabal/bin":$PATH
 export BCAT_BROWSER="uzbl-browser"
 export PIP_DOWNLOAD_CACHE="/tmp/pip-download-cache/"
+export GEM_HOME="$HOME/.gem"
+export GEM_PATH="$HOME/.gem"
 
 alias em='emacsclient -t'
 alias e='emacs -nw'

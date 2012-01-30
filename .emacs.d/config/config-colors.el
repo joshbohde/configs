@@ -1,7 +1,6 @@
 (require 'color-theme)
 
-(require 'color-theme-molokai)
 (setq color-theme-is-global t)
-(color-theme-molokai)
+(color-theme-sanityinc-tomorrow-bright)
 
 (provide 'config-colors)

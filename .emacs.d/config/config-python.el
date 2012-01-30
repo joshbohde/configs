@@ -1,30 +1,36 @@
-(autoload 'python-mode "python-mode" "Python Mode." t)
+(require 'python)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-(add-to-list 'interpreter-mode-alist '("python" . python-mode))
+(add-to-list 'interpreter-mode-alist '("ipython" . python-mode))
 
-(require 'python-pep8)
-(autoload 'python-pep8 "python-pep8")
-(require 'python-pylint)
-(autoload 'pylint "python-pylint")
+;(require 'python-pep8)
+;(autoload 'python-pep8 "python-pep8")
+;(require 'python-pylint)
+;(autoload 'pylint "python-pylint")
+
+(setq python-shell nil)
+(require 'virtualenv)
+(setq virtualenv-workon-starts-python nil)
 
 
-(add-hook 'python-mode-hook
-          (lambda ()
-            (define-key py-mode-map "\M-p" 'flymake-goto-prev-error)
-            (define-key py-mode-map "\M-n" 'flymake-goto-next-error)))
+(setq
+  python-shell-interpreter "ipython"
+  python-shell-interpreter-args ""
+  python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+  python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+  python-shell-completion-setup-code
+    "from IPython.core.completerlib import module_completion"
+  python-shell-completion-module-string-code
+    "';'.join(module_completion('''%s'''))\n"
+  python-shell-completion-string-code
+    "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 
-(when (load "flymake" t)
-  (require 'flymake-cursor)
-  (defun flymake-pyflakes-init ()
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-               'flymake-create-temp-inplace))
-       (local-file (file-relative-name
-            temp-file
-            (file-name-directory buffer-file-name))))
-      (list "pyflakes" (list local-file))))
-  (add-to-list 'flymake-allowed-file-name-masks
-           '("\\.py\\'" flymake-pyflakes-init)))
-(add-hook 'find-file-hook 'flymake-find-file-hook)
+(defun workon (&optional env)
+  (interactive "P")
+  (let ((env
+         (cond
+          ((stringp env) env)
+          (t (read-from-minibuffer "Virtualenv to activate: ")))))
+    (setq python-shell-virtualenv-path (concat "~/.virtualenvs/" env))))
 
 
 (provide 'config-python)

@@ -22,7 +22,8 @@
   python-shell-completion-module-string-code
     "';'.join(module_completion('''%s'''))\n"
   python-shell-completion-string-code
-    "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
+    "';'.join(get_ipython().Completer.all_completions('''%s'''))\n"
+  python-indent-offset 4)
 
 (defun workon (&optional env)
   (interactive "P")

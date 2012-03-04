@@ -1,4 +1,6 @@
 ;; Haskell Stuff
+(package-require 'haskell-mode)
+
 (require 'inf-haskell) 
 (add-hook 'haskell-mode-hook
        '(lambda ()

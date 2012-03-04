@@ -3,7 +3,11 @@
   (rainbow-delimiters-mode 1))
 (add-hook 'clojure-mode-hook 'my-clojure-hook)
 
-(autoload 'clojure-mode "clojure-mode" "A major mode for Clojure" t)
+(require 'clojure-mode)
+(require 'clojurescript-mode)
+
 (add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
+;;(add-to-list 'auto-mode-alist '("\\.clj$" . clojure-test-mode))
+(add-to-list 'auto-mode-alist '("\.cljs$" . clojurescript-mode))
 
 (provide 'config-clojure)

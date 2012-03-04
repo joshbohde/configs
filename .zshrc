@@ -1,4 +1,5 @@
-if [[ $TERM == "dumb" ]]; then# in emacs
+if [[ $TERM == "dumb" ]];
+then
     PS1='%(?..[%?])%!:%~%# '
     # for tramp to not hang, need the following. cf:
     # http://www.emacswiki.org/emacs/TrampMode
@@ -91,4 +92,4 @@ _fab_list() {
 
 
 compctl -K _fab_list fab
-
+fi

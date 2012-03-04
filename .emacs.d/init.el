@@ -78,6 +78,7 @@
  '(haskell-program-name "ghci")) 
 
 (require 'xclip)
+
 (require 'rainbow-mode)
 (add-to-list 'auto-mode-alist '("\\.css$" . rainbow-mode))
 
@@ -85,9 +86,7 @@
 (setq confirm-nonexistent-file-or-buffer nil)
 (setq ido-create-new-buffer 'always)
 
-(setq evernote-ruby-command "/usr/bin/ruby")
-(require 'evernote-mode)
-
+(package-require 'smex)
 (require 'smex)
 (smex-initialize)
 

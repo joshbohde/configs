@@ -2,14 +2,12 @@
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("ipython" . python-mode))
 
-;(require 'python-pep8)
-;(autoload 'python-pep8 "python-pep8")
-;(require 'python-pylint)
-;(autoload 'pylint "python-pylint")
-
 (setq python-shell nil)
+(package-require 'virtualenv)
 (require 'virtualenv)
 (setq virtualenv-workon-starts-python nil)
+
+(package-require 'pyflakes)
 
 
 (setq

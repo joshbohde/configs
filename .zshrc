@@ -31,6 +31,7 @@ alias ed='emacs --daemon'
 alias sued='sudo emacs -nw'
 alias scheme='mzscheme'
 alias ls="ls -x -X --color=always"
+alias tm="tmux"
 alias sc="byobu -RRd"
 
 alias tv='DISPLAY=:0.1'

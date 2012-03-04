@@ -85,3 +85,12 @@
 (setq confirm-nonexistent-file-or-buffer nil)
 (setq ido-create-new-buffer 'always)
 
+(setq evernote-ruby-command "/usr/bin/ruby")
+(require 'evernote-mode)
+
+(require 'smex)
+(smex-initialize)
+
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands) 
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)

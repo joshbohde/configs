@@ -1,11 +1,11 @@
 URxvt*scrollBar: false
-URxvt*font: -*-terminus-*-*-*-*-12-*-*-*-*-*-*-*
+URxvt*font: xft:Inconsolata\-dz for Powerline:pixelsize=14
 URxvt*transparent: false
 URxvt*depth: 32
 
 xterm*metaSendsEscape: true
 xterm*eightBitInput: false
-xterm*faceName: inconsolata:pixelsize=14
+xterm*faceName: Inconsolata\-dz for Powerline:pixelsize=14
 
 !! drop in Solarized colorscheme for Xresources/Xdefaults
 

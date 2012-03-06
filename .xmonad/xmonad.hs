@@ -22,6 +22,7 @@ main = do
         , logHook = dynamicLogWithPP $ xmobarPP
                         { ppOutput = hPutStrLn xmproc
                         , ppTitle = xmobarColor "#393939" "" . shorten 50
+                        , ppCurrent = xmobarColor "#ffcc66" ""
                         }
         , modMask = mod4Mask     -- Rebind Mod to the Windows key
 	, terminal = "terminator"

@@ -1,0 +1,34 @@
+[global_config]
+  hide_tabbar = True
+  window_state = fullscreen
+  enabled_plugins = CustomCommandsMenu, ActivityWatch, LaunchpadCodeURLHandler, APTURLHandler
+  title_hide_sizetext = True
+  focus = system
+  borderless = True
+  title_transmit_bg_color = "#d30102"
+  tab_position = hidden
+[keybindings]
+[profiles]
+  [[default]]
+    scrollbar_position = hidden
+    palette = "#393939:#f2777a:#00aa00:#aa5500:#0000aa:#aa00aa:#00aaaa:#999999:#515151:#f99157:#99cc99:#ffcc66:#6699cc:#cc99cc:#66cccc:#cccccc"
+    use_system_font = False
+    cursor_color = "#eee8d5"
+    foreground_color = "#cccccc"
+    show_titlebar = False
+    font = Inconsolata-dz for Powerline Medium 10
+    background_color = "#2d2d2d"
+  [[solarized-light]]
+    palette = "#073642:#d30102:#859900:#b58900:#6c71c4:#d33682:#2aa198:#839496:#586e75:#cb4b16:#859900:#b58900:#268bd2:#dc322f:#2aa198:#93a1a1"
+    background_color = "#eee8d5"
+    cursor_color = "#002b36"
+    foreground_color = "#002b36"
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+    [[[window0]]]
+      type = Window
+      parent = ""
+[plugins]

@@ -9,7 +9,7 @@ xrdb -load .Xdefaults
 trayer --edge top --align right --SetDockType true --SetPartialStrut false  --expand true --width 5 --transparent true --tint 0x073642 --height 12 &
  
 # Set the background color
-xsetroot -solid black
+xsetroot -solid 0x2d2d2d
 
 # Fire up apps
 emacs --daemon 

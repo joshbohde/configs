@@ -2,7 +2,7 @@
 (require 'color-theme)
 (setq color-theme-is-global t)
 
-(package-require 'color-theme-sanityinc-tomorrow)
-(color-theme-sanityinc-tomorrow-eighties)
+(package-require 'color-theme-molokai)
+(color-theme-molokai)
 
 (provide 'config-colors)

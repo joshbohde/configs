@@ -28,8 +28,33 @@
   (let ((env
          (cond
           ((stringp env) env)
-          (t (read-from-minibuffer "Virtualenv to activate: ")))))
-    (setq python-shell-virtualenv-path (concat "~/.virtualenvs/" env))))
+          (t (read-from-minibuffer "Virtualenv to activate: "))))
+        (full-env (concat "~/.virtualenvs/" env)))
+    (setq python-shell-virtualenv-path full-env)))
 
+(package-require 'nose)
+(require 'nose)
+
+(setq nose-project-names '("nosetests"))
+
+(defun nose-get-directory ()
+  "Get either the local directory or the virtualenv directory"
+  (if python-shell-virtualenv-path
+      (concat python-shell-virtualenv-path "/bin/")
+    (file-name-directory buffer-file-name)))
+
+(defun nose-find-test-runner-names (runner)
+  "find eggs/bin/test in a parent dir of current buffer's file"
+  (nose-find-test-runner-in-dir-named (expand-file-name (nose-get-directory)) runner))
+
+
+(add-hook 'python-mode-hook
+          #'(lambda ()
+            (local-set-key "\C-ca" 'nosetests-all)
+            (local-set-key "\C-cm" 'nosetests-module)
+            (local-set-key "\C-c." 'nosetests-one)
+            (local-set-key "\C-cpa" 'nosetests-pdb-all)
+            (local-set-key "\C-cpm" 'nosetests-pdb-module)
+            (local-set-key "\C-cp." 'nosetests-pdb-one)))
 
 (provide 'config-python)

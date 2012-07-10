@@ -16,7 +16,6 @@
 (add-to-list 'load-path (concat dotfiles-dir "config"))
 (add-to-list 'load-path (concat dotfiles-dir "vendor"))
 
-
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq indent-line-function 'insert-tab)
@@ -43,6 +42,7 @@
 (require 'config-javascript)
 (require 'config-haskell)
 (require 'config-clojure)
+(require 'config-css)
 
 (require 'org-install)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))

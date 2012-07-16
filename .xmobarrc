@@ -1,7 +1,7 @@
-Config { font = "-*-terminus-*-*-*-*-12-*-*-*-*-*-*-*"
+Config { font = "-*-terminus-*-*-*-*-14-*-*-*-*-*-*-*"
        , bgColor = "#2d2d2d"
        , fgColor = "#cccccc"
-       , position = TopW L 95
+       , position = TopSize L 95 18
        , lowerOnStart = True
        , commands = [Run Weather "KMKC" ["-t"," <tempF>F <skyCondition> ","-L","40","-H","75","--normal","#cccccc","--high","#f2777a","--low","#66cccc"] 36000
                     , Run Cpu ["-L","3","-H","50","--normal","#cccccc","--high","#f2777a"] 10

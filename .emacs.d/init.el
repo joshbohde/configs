@@ -72,7 +72,7 @@
   (delete-other-windows))
 
 (setq browse-url-browser-function 'browse-url-generic
-      browse-url-generic-program "/usr/bin/conkeror")
+      browse-url-generic-program "/usr/bin/google-chrome")
 
 (custom-set-variables
  '(haskell-program-name "ghci")) 
@@ -93,3 +93,4 @@
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands) 
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+(global-set-key (kbd "C-c C-v") 'browse-url-at-point)

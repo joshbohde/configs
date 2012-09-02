@@ -2,3 +2,5 @@ keycode 66 = Control_L
 clear Lock
 add Control = Control_L
 keycode 37 = Super_L
+keycode 102 = Hyper_L
+add Mod4 = Hyper_L

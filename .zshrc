@@ -27,7 +27,7 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-export TERM=xterm-256color
+export TERM=screen-256color
 export EDITOR='emacsclient -t'
 export ALTERNATE_EDITOR='emacs -nw'
 export PATH="$HOME/.gem/bin":"$HOME/.bin":"$HOME/.cabal/bin":$PATH

@@ -1,8 +1,2 @@
-(package-require 'color-theme)
-(require 'color-theme)
-(setq color-theme-is-global t)
-
-(package-require 'color-theme-molokai)
-(color-theme-molokai)
-
+(load-theme 'sanityinc-tomorrow-bright t)
 (provide 'config-colors)

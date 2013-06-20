@@ -80,7 +80,7 @@
   (delete-other-windows))
 
 (setq browse-url-browser-function 'browse-url-generic
-      browse-url-generic-program "/usr/bin/google-chrome")
+      browse-url-generic-program "/usr/bin/conkeror")
 
 (custom-set-variables
  '(haskell-program-name "ghci")) 

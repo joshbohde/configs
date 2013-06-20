@@ -2,6 +2,8 @@ require("global-overlay-keymap.js");
 require("session.js");
 require("page-modes/gmail.js");
 require("page-modes/google-search-results.js");
+require("page-modes/github.js");
+require("page-modes/duckduckgo.js");
 
 google_search_bind_number_shortcuts();
 session_auto_save_auto_load = true;
@@ -9,22 +11,17 @@ session_auto_save_auto_load = true;
 url_completion_use_bookmarks = true;
 url_completion_use_history = false;
 
-reddit_end_behavior="page";
-
-let (sheet = get_home_directory()) {
-    sheet.append(".conkeror");
-    sheet.append("stylesheets");
-    register_user_stylesheet(make_uri(sheet));
-}
-
 
 user_pref("browser.history_expire_day", 0);
 
 session_pref("signon.rememberSignons", true);
 session_pref("signon.expireMasterPassword", false);
 session_pref("signon.SignonFileName", "signons.txt");
+session_pref("xpinstall.whitelist.required", false);
+session_pref("extensions.checkCompatibility", false);
 
 define_webjump("d", "http://duckduckgo.com/?q=%s");
+define_webjump("g", "http://duckduckgo.com/?q=%s");
 define_webjump("hub", "http://github.com/search?q=%s&type=Everything");
 read_url_handler_list = [read_url_make_default_webjump_handler("d")];
 
@@ -33,53 +30,9 @@ Components.classes["@mozilla.org/login-manager;1"].getService(Components.interfa
 define_key(content_buffer_normal_keymap, "d", "follow-new-buffer");
 define_key(content_buffer_normal_keymap, "D", "follow-new-window");
 define_key(content_buffer_normal_keymap, "p", "paste-url-new-buffer");
+define_key(minibuffer_keymap, "C-j", "exit-minibuffer");
 
-function disable_scrollbars (buffer) {
-    buffer.browser.contentWindow.scrollbars.visible = false;
-}
-add_hook ("content_buffer_location_change_hook", disable_scrollbars);
-
-interactive("reddit-open-comments-new-buffer",
-            "Open the comments-page with the currently selected link.",
-            reddit_open_comments_new_buffer);
-
-define_key(reddit_keymap, "h", "reddit-open-comments-new-buffer");
-
-interactive("readability_arc90",
-            "Readability is a simple tool that makes reading on the web more enjoyable by removing the clutter around what you are reading",
-            function readability_arc90(I) {
-                var document = I.window.buffers.current.document;
-
-                _readability_readStyle=document.createElement('SCRIPT');
-                _readability_readStyle.text = 'var readStyle = style-newspaper;';
-                document.getElementsByTagName('head')[0].appendChild(_readability_readStyle);
-                _readability_readSize=document.createElement('SCRIPT');
-                _readability_readSize.text = 'var readSize = size-medium;';
-                document.getElementsByTagName('head')[0].appendChild(_readability_readSize);
-                _readability_readMargin=document.createElement('SCRIPT');
-                _readability_readMargin.text = 'var readMargin = margin-wide;';
-                document.getElementsByTagName('head')[0].appendChild(_readability_readMargin);
-                _readability_script=document.createElement('SCRIPT');
-                _readability_script.type='text/javascript';
-                _readability_script.src='http://lab.arc90.com/experiments/readability/js/readability.js?x='+(Math.random());
-                document.getElementsByTagName('head')[0].appendChild(_readability_script);
-                _readability_css=document.createElement('LINK');
-                _readability_css.rel='stylesheet';
-                _readability_css.href='http://lab.arc90.com/experiments/readability/css/readability.css';
-                _readability_css.type='text/css';
-                _readability_css.media='screen';
-                document.getElementsByTagName('head')[0].appendChild(_readability_css);
-                _readability_print_css=document.createElement('LINK');
-                _readability_print_css.rel='stylesheet';
-                _readability_print_css.href='http://lab.arc90.com/experiments/readability/css/readability-print.css';
-                _readability_print_css.media='print';
-                _readability_print_css.type='text/css';
-                document.getElementsByTagName('head')[0].appendChild(_readability_print_css);
-            });
-
-define_key(content_buffer_normal_keymap, "z", "readability_arc90");
-
-interactive("instapaper", "Add current page to instapaper", 
+interactive("instapaper", "Add current page to instapaper",
     function iprl5(I){
         var document = I.window.buffers.current.document;
         var d=document,z=d.createElement('scr'+'ipt'),b=d.body,l=d.location;
@@ -94,3 +47,27 @@ interactive("instapaper", "Add current page to instapaper",
 );
 
 define_key(content_buffer_normal_keymap, "i", "instapaper");
+
+
+define_webjump("lastpass-login", "javascript:(function(){/*Click_This_Button_To_AutoLogin___Copyright_LastPass_all_rights_reserved*/_LASTPASS_INC=function(u,s){if(u.match(/_LASTPASS_RAND/)){alert('Cancelling_request_may_contain_randkey');return;}s=document.createElement('script');s.setAttribute('type','text/javascript');s.setAttribute('charset','UTF-8');s.setAttribute('src',u);if(typeof(window.attachEvent)!='undefined')document.body.appendChild(s);else{if(document.getElementsByTagName('head').length>0){document.getElementsByTagName('head').item(0).appendChild(s);}else{document.getElementsByTagName('body').item(0).appendChild(s);}}};_LASTPASS_RAND='a23af6ee2808c82bc82c08a824ec9d0b12fa80ab682c0f6ff7047abc0e6eb19c';_LASTPASS_INC('https://lastpass.com/bml.php'+String.fromCharCode(63)+'v=0&a=1&r='+Math.random()+'&h=526bd5b4a127f1913fefd42315757b52ce74f55a0e1b0754033cc2663f304451&u='+escape(document.location.href));})();");
+define_webjump("lastpass-home", "chrome://lastpass/content/home.xul");
+
+
+define_keymap("reader_keymap", $display_name = "reader");
+[
+ "j",                        // Move selected down
+ "k",                        // Move selected up
+ "o", "return",              // Open story
+ "r",                        // refresh
+ "S-a",                      // Mark all as read
+ "b", "v"                    // permalink
+].map(function (x) define_key(reader_keymap, x, null, $fallthrough));
+
+
+define_keymaps_page_mode("reader-mode",
+    build_url_regexp($domain = "reader.joshbohde",
+                     $allow_www = false),
+    { normal: reader_keymap },
+    $display_name = "Reader");
+
+page_mode_activate(reader_mode);

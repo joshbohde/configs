@@ -34,6 +34,16 @@
 
 (require 'highlight-indentation)
 
+(require 'multiple-cursors)
+(global-set-key (kbd "C-x C-m C-m") 'mc/edit-lines)
+(global-set-key (kbd "C-x C-m C-j") 'mc/edit-ends-of-lines)
+(global-set-key (kbd "C-x C-m C-k") 'mc/edit-beginnings-of-lines)
+(global-set-key (kbd "C-x C-m C-a") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-x C-m C-p") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-x C-m C-n") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-x C-m C-l") 'mc/mark-more-like-this-extended)
+(global-set-key (kbd "C-x C-m C-a") 'mc/mark-all-in-region)
+
 
 (require 'quack)
 (require 'paredit)
@@ -53,6 +63,7 @@
 (require 'config-haskell)
 (require 'config-clojure)
 (require 'config-css)
+(require 'config-irc)
 
 (require 'org-install)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
@@ -95,6 +106,7 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq confirm-nonexistent-file-or-buffer nil)
 (setq ido-create-new-buffer 'always)
+(turn-on-xclip)
 
 (package-require 'smex)
 (require 'smex)
@@ -104,3 +116,20 @@
 (global-set-key (kbd "M-X") 'smex-major-mode-commands) 
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 (global-set-key (kbd "C-c C-v") 'browse-url-at-point)
+
+
+(if (find-font (font-spec :name "Inconsolata-dz for Powerline"))
+    (set-face-attribute 'default nil
+                        :font "Inconsolata-dz for Powerline:pixelsize=14"))
+
+(require 'find-file-in-repository)
+(global-set-key (kbd "C-x f") 'find-file-in-repository)
+
+(setq twittering-use-master-password t)
+(setq twittering-icon-mode t)
+(setq twittering-use-icon-storage t)
+
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(setq require-final-newline t)
+
+(put 'ido-exit-minibuffer 'disabled nil)

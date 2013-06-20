@@ -21,7 +21,7 @@ main = do
 	, layoutHook = smartBorders $ (avoidStruts $  tabbed shrinkText defaultTheme ||| Mirror Accordion ||| layoutHook defaultConfig)
         , logHook = dynamicLogWithPP $ xmobarPP
                         { ppOutput = hPutStrLn xmproc
-                        , ppTitle = xmobarColor "#393939" "" . shorten 50
+                        , ppTitle = xmobarColor "#cccccc" "" . shorten 50
                         , ppCurrent = xmobarColor "#ffcc66" ""
                         }
         , modMask = mod4Mask     -- Rebind Mod to the Windows key

@@ -10,6 +10,7 @@ then
     unfunction preexec
 else
 # Lines configured by zsh-newuser-install
+LANG=en_US.utf8
 HISTFILE=~/.histfile
 HISTSIZE=100000
 SAVEHIST=100000

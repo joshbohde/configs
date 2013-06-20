@@ -23,14 +23,6 @@
     "';'.join(get_ipython().Completer.all_completions('''%s'''))\n"
   python-indent-offset 4)
 
-(defun workon (&optional env)
-  (interactive "P")
-  (let ((env
-         (cond
-          ((stringp env) env)
-          (t (read-from-minibuffer "Virtualenv to activate: "))))
-        (full-env (concat "~/.virtualenvs/" env)))
-    (setq python-shell-virtualenv-path full-env)))
 
 (package-require 'nose)
 (require 'nose)
@@ -56,5 +48,14 @@
             (local-set-key "\C-cpa" 'nosetests-pdb-all)
             (local-set-key "\C-cpm" 'nosetests-pdb-module)
             (local-set-key "\C-cp." 'nosetests-pdb-one)))
+
+
+(setq jedi:setup-keys t)
+
+(require 'auto-complete)
+
+(autoload 'jedi:setup "jedi" nil t)
+(add-hook 'python-mode-hook 'jedi:setup)
+(add-hook 'python-mode-hook 'auto-complete-mode)
 
 (provide 'config-python)

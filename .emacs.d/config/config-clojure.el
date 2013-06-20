@@ -17,4 +17,11 @@
 ;;(add-to-list 'auto-mode-alist '("\\.clj$" . clojure-test-mode))
 (add-to-list 'auto-mode-alist '("\.cljs$" . clojurescript-mode))
 
+(package-require 'nrepl)
+(require 'nrepl)
+
+(require 'midje-mode)
+
+(require 'align-cljlet)
+
 (provide 'config-clojure)
